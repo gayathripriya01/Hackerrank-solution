@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        int min = sc.nextInt();
+        int count = 0;
+        PriorityQueue<Integer> Q = new PriorityQueue<Integer>(num);
+        for(int i = 0; i < num; i++){
+            int sweetness = sc.nextInt();
+            Q.add(sweetness);
+        }
+        while(Q.peek() < min && Q.size() > 1){
+            int n = Q.poll() + 2*Q.poll();
+            Q.add(n);
+            count++;
+        }
+        if(Q.peek() >= min){
+            System.out.println(count);
+        }
+        else{
+            System.out.println(-1);
+        }
+    }
+}
